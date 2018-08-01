@@ -15,3 +15,7 @@ var second = document.createElement('div');
 second.setAttribute('id', 'second');
 second.innerHTML = '<p>さらに要素を追加</p>'
 practice.insertBefore(second, first);
+
+//要素を削除します
+parent = first.parentElement;
+parent.removeChild(first);
