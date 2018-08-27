@@ -1,0 +1,13 @@
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+
+# Directory
+finish/
+sample_js/template/
