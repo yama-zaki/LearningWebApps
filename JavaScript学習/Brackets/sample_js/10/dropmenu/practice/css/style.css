@@ -9,5 +9,6 @@
 #menu dd {
   background: #eee;
   border: solid 1px #aaa;
+  display: none;
   text-align: center;
 }
