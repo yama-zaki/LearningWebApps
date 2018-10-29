@@ -1,7 +1,7 @@
 var records = [
   {
     album: {src: 'images/Firefox.jpg', alt: 'My test image'},
-    strings: {
+    messages: {
       tM: 'My main title',
       t1: 'My top level heading',
       t2: 'My subheading',
@@ -20,7 +20,7 @@ var records = [
   },
   {
     album: {src: 'images/Nanachi.jpg', alt: 'My image'},
-    strings: {
+    messages: {
       tM: 'ななちはかわいい',
       t1: 'ミーティもかわいい',
       t2: '疲れた時はかわいいを見よう',
@@ -68,8 +68,8 @@ myImage.onclick = function() {
   var record = records[num];
   assignAttributes(myImage, record.album);
   assignAttributes(imgUrl, record.link);
-  for (var key in record.strings) {
-    messageElements[key].innerHTML = record.strings[key];
+  for (var key in record.messages) {
+    messageElements[key].innerHTML = record.messages[key];
   }
 }
 
