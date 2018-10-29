@@ -3,27 +3,42 @@ var album = [
   {src: 'images/Nanachi.jpg', alt: 'My image'}
 ];
 
-var strings = [{
-  tM: 'My main title',     t1: 'My top level heading', 
-  t2: 'My subheading',     t3: 'My sub-subheading', 
-  m1: 'This is a single paragraph', 
-  m2: 'At Mozilla, we’re a global community of', 
-  m3: 'working togethr...',
-  l1: 'technologists', l2: 'thinkers', l3: 'builders' 
-  }, {
-  tM: 'ななちはかわいい',         t1: 'ミーティもかわいい', 
-  t2: '疲れた時はかわいいを見よう', t3: '和んだらお仕事に戻ろう',
-  m1: 'これは一つの物語です',     
-  m2: 'このかわいいを作っているのは',
-  m3: 'ななちの画像をもっと見る？',
-  l1: 'ななち', l2: 'ミーティ', l3: 'なべ'    
-  } 
+var strings = [
+  {
+    tM: 'My main title',
+    t1: 'My top level heading',
+    t2: 'My subheading',
+    t3: 'My sub-subheading',
+    m1: 'This is a single paragraph',
+    m2: 'At Mozilla, we’re a global community of',
+    m3: 'working togethr...',
+    l1: 'technologists',
+    l2: 'thinkers',
+    l3: 'builders'
+  },
+  {
+    tM: 'ななちはかわいい',
+    t1: 'ミーティもかわいい',
+    t2: '疲れた時はかわいいを見よう',
+    t3: '和んだらお仕事に戻ろう',
+    m1: 'これは一つの物語です',
+    m2: 'このかわいいを作っているのは',
+    m3: 'ななちの画像をもっと見る？',
+    l1: 'ななち',
+    l2: 'ミーティ',
+    l3: 'なべ'
+  }
 ];
 
 var link = [
-  {url: 'https://www.mozilla.org/en-US/about/manifesto', 
-   text: 'Mozilla Manifesto'},
-  {url: 'https://search.yahoo.co.jp/image/search?p=%E3%81%AA%E3%81%AA%E3%81%A1%E3%81%8C%E3%81%9E%E3%81%86&ei=UTF-8&fr=top_ga1_sa', text: 'ななち画像へのリンク (Yahoo)'}
+  {
+    url: 'https://www.mozilla.org/en-US/about/manifesto',
+    text: 'Mozilla Manifesto'
+  },
+  {
+    url: 'https://search.yahoo.co.jp/image/search?p=%E3%81%AA%E3%81%AA%E3%81%A1%E3%81%8C%E3%81%9E%E3%81%86&ei=UTF-8&fr=top_ga1_sa',
+    text: 'ななち画像へのリンク (Yahoo)'
+  }
 ];
 
 function GetNumber(aStr) {
@@ -56,11 +71,11 @@ myImage.onclick = function() {
   subTitle2.innerHTML = strings[num].t2;
   subTitle3.innerHTML = strings[num].t3;
   msgP1.innerHTML = strings[num].m1;
-  msgP2.innerHTML = strings[num].m2;  
+  msgP2.innerHTML = strings[num].m2;
   msgP3.innerHTML = strings[num].m3;
   lsti1.innerHTML = strings[num].l1;
   lsti2.innerHTML = strings[num].l2;
   lsti3.innerHTML = strings[num].l3;
   imgUrl.href = link[num].url;
   imgUrl.innerText = link[num].text;
-  }
+}
