@@ -66,21 +66,23 @@ var imgUrl = document.querySelector('a');
 myImage.onclick = function() {
   var num = toggleAlbumIndexOf(myImage.getAttribute('src'));
   var record = records[num];
-  for (var key in record.album) {
-    myImage.setAttribute(key, record.album[key]);
-  }
+  assignAttributes(myImage, record.album);
   var strings = record.strings;
   for (var key in strings) {
     messageElements[key].innerHTML = strings[key];
   }
-  for (var key in record.link) {
-    var value = record.link[key];
+  assignAttributes(imgUrl, record.link);
+}
+
+function assignAttributes(element, attrs) {
+  for (var key in attrs) {
+    var value = attrs[key];
     switch(key) {
     case 'innerText':
-      imgUrl.innerText = value;
+      element.innerText = value;
       break;
     default:
-      imgUrl.setAttribute(key, value);
+      element.setAttribute(key, value);
       break;
     }
   }
