@@ -68,9 +68,8 @@ myImage.onclick = function() {
   var record = records[num];
   assignAttributes(myImage, record.album);
   assignAttributes(imgUrl, record.link);
-  var strings = record.strings;
-  for (var key in strings) {
-    messageElements[key].innerHTML = strings[key];
+  for (var key in record.strings) {
+    messageElements[key].innerHTML = record.strings[key];
   }
 }
 
