@@ -61,13 +61,13 @@ var messageElements = {
 }
 
 var image = document.querySelector('img');
-var imgUrl = document.querySelector('a');
+var link = document.querySelector('a');
 
 image.onclick = function() {
   var num = toggleImageIndexOf(image.getAttribute('src'));
   var record = records[num];
   assignAttributes(image, record.image);
-  assignAttributes(imgUrl, record.link);
+  assignAttributes(link, record.link);
   for (var key in record.messages) {
     messageElements[key].innerHTML = record.messages[key];
   }
