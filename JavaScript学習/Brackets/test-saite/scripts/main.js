@@ -1,6 +1,6 @@
 var records = [
   {
-    album: {src: 'images/Firefox.jpg', alt: 'My test image'},
+    image: {src: 'images/Firefox.jpg', alt: 'My test image'},
     messages: {
       tM: 'My main title',
       t1: 'My top level heading',
@@ -19,7 +19,7 @@ var records = [
     }
   },
   {
-    album: {src: 'images/Nanachi.jpg', alt: 'My image'},
+    image: {src: 'images/Nanachi.jpg', alt: 'My image'},
     messages: {
       tM: 'ななちはかわいい',
       t1: 'ミーティもかわいい',
@@ -39,8 +39,8 @@ var records = [
   }
 ];
 
-function toggleAlbumIndexOf(src) {
-  if (src === records[0].album.src) {
+function toggleImageIndexOf(src) {
+  if (src === records[0].image.src) {
     return 1;
   }else{
     return 0;
@@ -64,9 +64,9 @@ var myImage = document.querySelector('img');
 var imgUrl = document.querySelector('a');
 
 myImage.onclick = function() {
-  var num = toggleAlbumIndexOf(myImage.getAttribute('src'));
+  var num = toggleImageIndexOf(myImage.getAttribute('src'));
   var record = records[num];
-  assignAttributes(myImage, record.album);
+  assignAttributes(myImage, record.image);
   assignAttributes(imgUrl, record.link);
   for (var key in record.messages) {
     messageElements[key].innerHTML = record.messages[key];
