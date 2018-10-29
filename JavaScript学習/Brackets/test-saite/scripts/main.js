@@ -60,13 +60,13 @@ var messageElements = {
   l3: document.getElementsByTagName('li')[2]
 }
 
-var myImage = document.querySelector('img');
+var image = document.querySelector('img');
 var imgUrl = document.querySelector('a');
 
-myImage.onclick = function() {
-  var num = toggleImageIndexOf(myImage.getAttribute('src'));
+image.onclick = function() {
+  var num = toggleImageIndexOf(image.getAttribute('src'));
   var record = records[num];
-  assignAttributes(myImage, record.image);
+  assignAttributes(image, record.image);
   assignAttributes(imgUrl, record.link);
   for (var key in record.messages) {
     messageElements[key].innerHTML = record.messages[key];
