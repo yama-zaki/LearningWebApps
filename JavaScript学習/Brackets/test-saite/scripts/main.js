@@ -3,6 +3,14 @@ var album = [
   {src: 'images/Nanachi.jpg', alt: 'My image'}
 ];
 
+function GetNumber(aStr) {
+  if (aStr === album[0].src) {
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
 var strings = [
   {
     tM: 'My main title',
@@ -40,14 +48,6 @@ var link = [
     text: 'ななち画像へのリンク (Yahoo)'
   }
 ];
-
-function GetNumber(aStr) {
-  if (aStr === album[0].src) {
-    return 1;
-  }else{
-    return 0;
-  }
-}
 
 var myImage = document.querySelector('img');
 var mainTitle = document.querySelector('h1');
