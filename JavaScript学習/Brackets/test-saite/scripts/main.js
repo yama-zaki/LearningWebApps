@@ -63,9 +63,9 @@ var lsti3 = document.getElementsByTagName('li')[2];
 myImage.onclick = function() {
   var num = toggleAlbumIndexOf(myImage.getAttribute('src'));
   var record = records[num];
-  var album = record.album;
-  myImage.setAttribute('src', album.src);
-  myImage.setAttribute('alt', album.alt);
+  for (var key in record.album) {
+    myImage.setAttribute(key, record.album[key]);
+  }
   var strings = record.strings;
   mainTitle.innerHTML = strings.tM;
   subTitle1.innerHTML = strings.t1;
