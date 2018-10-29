@@ -14,8 +14,8 @@ var records = [
       l3: 'builders'
     },
     link: {
-      url: 'https://www.mozilla.org/en-US/about/manifesto',
-      text: 'Mozilla Manifesto'
+      href: 'https://www.mozilla.org/en-US/about/manifesto',
+      innerText: 'Mozilla Manifesto'
     }
   },
   {
@@ -33,8 +33,8 @@ var records = [
       l3: 'なべ'
     },
     link: {
-      url: 'https://search.yahoo.co.jp/image/search?p=%E3%81%AA%E3%81%AA%E3%81%A1%E3%81%8C%E3%81%9E%E3%81%86&ei=UTF-8&fr=top_ga1_sa',
-      text: 'ななち画像へのリンク (Yahoo)'
+      href: 'https://search.yahoo.co.jp/image/search?p=%E3%81%AA%E3%81%AA%E3%81%A1%E3%81%8C%E3%81%9E%E3%81%86&ei=UTF-8&fr=top_ga1_sa',
+      innerText: 'ななち画像へのリンク (Yahoo)'
     }
   }
 ];
@@ -74,6 +74,6 @@ myImage.onclick = function() {
     messageElements[key].innerHTML = strings[key];
   }
   var link = record.link;
-  imgUrl.href = link.url;
-  imgUrl.innerText = link.text;
+  imgUrl.href = link.href;
+  imgUrl.innerText = link.innerText;
 }
