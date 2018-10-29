@@ -3,7 +3,7 @@ var album = [
   {src: 'images/Nanachi.jpg', alt: 'My image'}
 ];
 
-function GetNumber(aStr) {
+function albumIndexOf(aStr) {
   if (aStr === album[0].src) {
     return 1;
   }else{
@@ -63,7 +63,7 @@ var lsti2 = document.getElementsByTagName('li')[1];
 var lsti3 = document.getElementsByTagName('li')[2];
 
 myImage.onclick = function() {
-  var num = GetNumber(myImage.getAttribute('src'));
+  var num = albumIndexOf(myImage.getAttribute('src'));
   myImage.setAttribute('src', album[num].src);
   myImage.setAttribute('alt', album[num].alt);
   mainTitle.innerHTML = strings[num].tM;
