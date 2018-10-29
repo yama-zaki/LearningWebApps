@@ -3,8 +3,8 @@ var album = [
   {src: 'images/Nanachi.jpg', alt: 'My image'}
 ];
 
-function albumIndexOf(aStr) {
-  if (aStr === album[0].src) {
+function albumIndexOf(src) {
+  if (src === album[0].src) {
     return 1;
   }else{
     return 0;
