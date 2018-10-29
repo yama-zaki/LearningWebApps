@@ -73,7 +73,15 @@ myImage.onclick = function() {
   for (var key in strings) {
     messageElements[key].innerHTML = strings[key];
   }
-  var link = record.link;
-  imgUrl.href = link.href;
-  imgUrl.innerText = link.innerText;
+  for (var key in record.link) {
+    var value = record.link[key];
+    switch(key) {
+    case 'innerText':
+      imgUrl.innerText = value;
+      break;
+    default:
+      imgUrl.setAttribute(key, value);
+      break;
+    }
+  }
 }
