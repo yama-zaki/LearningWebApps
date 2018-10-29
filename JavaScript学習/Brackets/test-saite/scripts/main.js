@@ -67,11 +67,11 @@ myImage.onclick = function() {
   var num = toggleAlbumIndexOf(myImage.getAttribute('src'));
   var record = records[num];
   assignAttributes(myImage, record.album);
+  assignAttributes(imgUrl, record.link);
   var strings = record.strings;
   for (var key in strings) {
     messageElements[key].innerHTML = strings[key];
   }
-  assignAttributes(imgUrl, record.link);
 }
 
 function assignAttributes(element, attrs) {
