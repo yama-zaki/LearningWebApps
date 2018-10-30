@@ -44,18 +44,23 @@ function toggleImageIndexOf(src) {
   }
 }
 
-var myImage = document.querySelector('img');
-var mainTitle = document.querySelector('h1');
-var subTitle1 = document.querySelector('h2');
-var subTitle2 = document.querySelector('h3');
-var subTitle3 = document.querySelector('h4');
-var imgUrl = document.querySelector('a');
-var msgP1 = document.getElementsByTagName('p')[0];
-var msgP2 = document.getElementsByTagName('p')[1];
-var msgP3 = document.getElementsByTagName('p')[2];
-var lsti1 = document.getElementsByTagName('li')[0];
-var lsti2 = document.getElementsByTagName('li')[1];
-var lsti3 = document.getElementsByTagName('li')[2];
+var messageElements = {
+  tM: document.querySelector('h1'),
+  t1: document.querySelector('h2'),
+  t2: document.querySelector('h3'),
+  t3: document.querySelector('h4'),
+  m1: document.getElementsByTagName('p')[0],
+  m2: document.getElementsByTagName('p')[1],
+  m3: document.getElementsByTagName('p')[2],
+  l1: document.getElementsByTagName('li')[0],
+  l2: document.getElementsByTagName('li')[1],
+  l3: document.getElementsByTagName('li')[2]
+}
+
+var elements = {
+  image: document.querySelector('img'),
+  link: document.querySelector('a')
+}
 
 myImage.onclick = function() {
   var num = GetNumber(myImage.getAttribute('src'));
