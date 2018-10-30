@@ -45,7 +45,7 @@ function toggleImageIndexOf(src) {
   }else{
     return 0;
   }
-}
+};
 
 var messageElements = {
   tM: document.querySelector('h1'),
@@ -58,7 +58,7 @@ var messageElements = {
   l1: document.getElementsByTagName('li')[0],
   l2: document.getElementsByTagName('li')[1],
   l3: document.getElementsByTagName('li')[2]
-}
+};
 
 var elements = {
   image: document.querySelector('img'),
@@ -73,7 +73,7 @@ elements.image.onclick = function() {
   for (var key in record.messages) {
     messageElements[key].innerHTML = record.messages[key];
   }
-}
+};
 
 function assignAttributes(element, attrs) {
   for (var key in attrs) {
@@ -87,4 +87,4 @@ function assignAttributes(element, attrs) {
       break;
     }
   }
-}
+};
