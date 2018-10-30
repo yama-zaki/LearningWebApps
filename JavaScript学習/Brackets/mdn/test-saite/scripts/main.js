@@ -6,7 +6,7 @@ var records = [
       t1: 'My top level heading',
       t2: 'My subheading',
       t3: 'My sub-subheading',
-      m1: 'This is a single paragraph',      
+      m1: 'This is a single paragraph',
       m2: 'At Mozilla, we’re a global community of',
       m3: 'working togethr...',
       l1: 'technologists',
@@ -16,11 +16,11 @@ var records = [
     link: {
       href: 'https://www.mozilla.org/en-US/about/manifesto',
       innerText: 'Mozilla Manifesto'
-    } 
+    }
   },
   {
     image: {src: 'images/Nanachi.jpg', alt: 'My image'},
-    message: {
+    messages: {
       tM: 'ななちはかわいい',
       t1: 'ミーティもかわいい',
       t2: '疲れた時はかわいいを見よう',
@@ -28,11 +28,14 @@ var records = [
       m1: 'これは一つの物語です',
       m2: 'このかわいいを作っているのは',
       m3: 'ななちの画像をもっと見る？',
+      l1: 'ななち',
+      l2: 'ミーティ',
+      l3: 'なべ'
     },
     link: {
       href: 'https://search.yahoo.co.jp/image/search?p=%E3%81%AA%E3%81%AA%E3%81%A1%E3%81%8C%E3%81%9E%E3%81%86&ei=UTF-8&fr=top_ga1_sa',
-      innerText: 'ななち画像へのリンク (Yahoo)' 
-    }    
+      innerText: 'ななち画像へのリンク (Yahoo)'
+    }
   }
 ];
 
@@ -60,9 +63,9 @@ var messageElements = {
 var elements = {
   image: document.querySelector('img'),
   link: document.querySelector('a')
-}
+};
 
-image.onclick = function() {  
+elements.image.onclick = function() {
   var num = toggleImageIndexOf(elements.image.getAttribute('src'));
   var record = records[num];
   assignAttributes(elements.image, record.image);
