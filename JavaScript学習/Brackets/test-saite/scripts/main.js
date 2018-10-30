@@ -60,14 +60,16 @@ var messageElements = {
   l3: document.getElementsByTagName('li')[2]
 }
 
-var image = document.querySelector('img');
-var link = document.querySelector('a');
+var elements = {
+  image: document.querySelector('img'),
+  link: document.querySelector('a')
+};
 
-image.onclick = function() {
-  var num = toggleImageIndexOf(image.getAttribute('src'));
+elements.image.onclick = function() {
+  var num = toggleImageIndexOf(elements.image.getAttribute('src'));
   var record = records[num];
-  assignAttributes(image, record.image);
-  assignAttributes(link, record.link);
+  assignAttributes(elements.image, record.image);
+  assignAttributes(elements.link, record.link);
   for (var key in record.messages) {
     messageElements[key].innerHTML = record.messages[key];
   }
