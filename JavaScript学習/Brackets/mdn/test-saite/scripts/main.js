@@ -62,20 +62,26 @@ var elements = {
   link: document.querySelector('a')
 }
 
-myImage.onclick = function() {
-  var num = GetNumber(myImage.getAttribute('src'));
-  myImage.setAttribute('src', album[num].src);
-  myImage.setAttribute('alt', album[num].alt);
-  mainTitle.innerHTML = strings[num].tM;
-  subTitle1.innerHTML = strings[num].t1;
-  subTitle2.innerHTML = strings[num].t2;
-  subTitle3.innerHTML = strings[num].t3;
-  msgP1.innerHTML = strings[num].m1;
-  msgP2.innerHTML = strings[num].m2;  
-  msgP3.innerHTML = strings[num].m3;
-  lsti1.innerHTML = strings[num].l1;
-  lsti2.innerHTML = strings[num].l2;
-  lsti3.innerHTML = strings[num].l3;
-  imgUrl.href = link[num].url;
-  imgUrl.innerText = link[num].text;
+image.onclick = function() {  
+  var num = toggleImageIndexOf(elements.image.getAttribute('src'));
+  var record = records[num];
+  assignAttributes(elements.image, record.image);
+  assignAttributes(elements.link, record.link);
+  for (var key in record.messages) {
+    messageElements[key].innerHTML = record.messages[key];
   }
+}
+
+function assignAttributes(element, attrs) {
+  for (var key in attrs) {
+    var value = attrs[key];
+    switch(key) {
+    case 'innerText':
+      element.innerText = value;
+      break;
+    default:
+      element.setAttribute(key, value);
+      break;
+    }
+  }
+}
