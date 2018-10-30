@@ -36,8 +36,8 @@ var records = [
   }
 ];
 
-function GetNumber(aStr) {
-  if (aStr === album[0].src) {
+function toggleImageIndexOf(src) {
+  if (src === records[0].image.src) {
     return 1;
   }else{
     return 0;
