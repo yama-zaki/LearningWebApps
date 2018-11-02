@@ -33,35 +33,45 @@ function result() {
     yItem: randomValueFromArray(insertY),
     zItem: randomValueFromArray(insertZ),
     name: customName.value
-  }  
+  }
   
   function replaceItem(s) {
-    if(s === ':insertx:') {
-      if(Items.xItem === '') {
-      Items.xItem = randomValueFromArray(insertX);    
-    }   
-      return Items.xItem; 
-    } else if(s === ':inserty:') {
-      return Items.yItem;
-    } else if(s === ':insertz:') {
-      return Items.zItem;
-    } else if(s === 'Bob') {
-       if(Items.name === '') {
-        Items.name = s;
+    switch (s) {
+      case ':insertx:': {
+        if(Items.xItem === '') {
+          Items.xItem = randomValueFromArray(insertX);    
+        } 
+        return Items.xItem; 
       }
-      return Items.name; 
-    } else if(s === '300 pounds') {
-      if(document.getElementById("uk").checked) {
-        return Math.round(300 * 0.071429) + ' stone';
-      } else {
-        return s;
+      case ':inserty:': {
+        return Items.yItem;
       }
-    } else if(s === '94 fahrenheit') {
-      if(document.getElementById("uk").checked) {
-        return Math.round(94 * 1.8000 + 32.00) + ' centigrade';
-      } else {
-        return s;             
+      case ':insertz:': {
+        return Items.zItem;
       }
+      case 'Bob': {
+         if(Items.name === '') {
+           Items.name = s;
+         }
+        return Items.name; 
+      }
+      case'300 pounds': {
+        if(document.getElementById("uk").checked) {
+          return Math.round(300 * 0.071429) + ' stone';
+        } else {
+          return s;
+        }
+      }
+      case '94 fahrenheit': {
+        if(document.getElementById("uk").checked) {
+          return Math.round(94 * 1.8000 + 32.00) + ' centigrade';
+        } else {
+          return s;             
+        }
+      }
+      default: {
+        return s;     
+      } 
     }
   }
 
