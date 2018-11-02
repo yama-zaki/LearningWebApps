@@ -25,30 +25,49 @@ var insertZ = [
 ];
 
 randomize.addEventListener('click', result);
-
+  
 function result() {
   var newStory = storyText;
+  var Items = {
+    xItem: '',
+    yItem: randomValueFromArray(insertY),
+    zItem: randomValueFromArray(insertZ),
+    name: customName.value
+  }  
   
-  var xItem = randomValueFromArray(insertX);
-  var yItem = randomValueFromArray(insertY);
-  var zItem = randomValueFromArray(insertZ);
-  
-  newStory = newStory.replace(/:insertx:/g, xItem);
-  newStory = newStory.replace(':inserty:', yItem);
-  newStory = newStory.replace(':insertz:', zItem);
-  
-  if(customName.value !== '') {
-    var name = customName.value;
-    newStory = newStory.replace('Bob', name);    
+  function replaceItem(s) {
+    if(s === ':insertx:') {
+      if(Items.xItem === '') {
+      Items.xItem = randomValueFromArray(insertX);    
+    }   
+      return Items.xItem; 
+    } else if(s === ':inserty:') {
+      return Items.yItem;
+    } else if(s === ':insertz:') {
+      return Items.zItem;
+    } else if(s === 'Bob') {
+       if(Items.name === '') {
+        Items.name = s;
+      }
+      return Items.name; 
+    } else if(s === '300 pounds') {
+      if(document.getElementById("uk").checked) {
+        return Math.round(300 * 0.071429) + ' stone';
+      } else {
+        return s;
+      }
+    } else if(s === '94 fahrenheit') {
+      if(document.getElementById("uk").checked) {
+        return Math.round(94 * 1.8000 + 32.00) + ' centigrade';
+      } else {
+        return s;             
+      }
+    }
   }
 
-  if(document.getElementById("uk").checked) {
-    var weight = Math.round(300 * 0.071429) + ' stone';
-    var temperature = Math.round(94 * 1.8000 + 32.00) + ' centigrade';
-    newStory = newStory.replace('300 pounds', weight);
-    newStory = newStory.replace('94 fahrenheit', temperature);
-  }
-
+  newStory = newStory.replace(/(:insertx:|:inserty:|:insertz:|Bob|300 pounds|94 fahrenheit)/g, replaceItem);
+  
   story.textContent = newStory;
   story.style.visibility = 'visible';
+  Items.xItem = '';
 }
