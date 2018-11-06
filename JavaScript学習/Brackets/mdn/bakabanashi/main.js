@@ -65,8 +65,7 @@ function result() {
     }
   }
 
-　var newStory = storyText;
-  newStory = newStory.replace(/(:insertx:|:inserty:|:insertz:|Bob|300 pounds|94 fahrenheit)/g, replaceItem);
+　var newStory = storyText.replace(/(:insertx:|:inserty:|:insertz:|Bob|300 pounds|94 fahrenheit)/g, replaceItem);
   
   story.textContent = newStory;
   story.style.visibility = 'visible';
