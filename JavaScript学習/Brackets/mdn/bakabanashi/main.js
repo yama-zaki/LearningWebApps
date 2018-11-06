@@ -27,7 +27,6 @@ var insertZ = [
 randomize.addEventListener('click', result);
   
 function result() {
-  var newStory = storyText;
   var Items = {
     xItem: '',
     yItem: randomValueFromArray(insertY),
@@ -68,6 +67,7 @@ function result() {
     }
   }
 
+　var newStory = storyText;
   newStory = newStory.replace(/(:insertx:|:inserty:|:insertz:|Bob|300 pounds|94 fahrenheit)/g, replaceItem);
   
   story.textContent = newStory;
