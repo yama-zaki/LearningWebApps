@@ -27,7 +27,7 @@ var insertZ = [
 randomize.addEventListener('click', result);
   
 function result() {
-  var Items = {
+  var items = {
     xItem: '',
     yItem: randomValueFromArray(insertY),
     zItem: randomValueFromArray(insertZ),
@@ -37,19 +37,19 @@ function result() {
   function replaceItem(s) {
     switch (s) {
       case ':insertx:':
-        if(Items.xItem === '') {
-          Items.xItem = randomValueFromArray(insertX);    
+        if(items.xItem === '') {
+          items.xItem = randomValueFromArray(insertX);    
         } 
-        return Items.xItem;      
+        return items.xItem;      
       case ':inserty:':
-        return Items.yItem;      
+        return items.yItem;      
       case ':insertz:':
-        return Items.zItem;      
+        return items.zItem;      
       case 'Bob':
-         if(Items.name === '') {
-           Items.name = s;
+         if(items.name === '') {
+           items.name = s;
          }
-        return Items.name;      
+        return items.name;      
       case'300 pounds':
         if(document.getElementById("uk").checked) {
           return Math.round(300 * 0.071429) + ' stone';
@@ -72,5 +72,5 @@ function result() {
   
   story.textContent = newStory;
   story.style.visibility = 'visible';
-  Items.xItem = '';
+  items.xItem = '';
 }
