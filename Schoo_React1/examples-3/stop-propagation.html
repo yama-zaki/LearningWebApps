@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>event.stopPropagation()</title>
+</head>
+<body>
+  <h1>event.stopPropagation()</h1>
+  <p>コンソールを見てください。</p>
+
+  <div id="wrap">
+    <button
+      id="button"
+      onclick="console.log('target(html): #button');"
+    >Click me!!!!</button>
+  </div>
+
+  <script>
+    /**
+     * window
+     */
+    window.addEventListener('click', function () {
+      console.log("bubbling: window");
+    });
+    window.addEventListener('click', function () {
+      console.log("capture: window");
+    }, true);
+
+    /**
+     * document.body
+     */
+    document.body.addEventListener('click', function () {
+      console.log("bubbling: document.body");
+    });
+    document.body.addEventListener('click', function () {
+      console.log("capture: document.body");
+    }, true);
+
+    /**
+     * #wrap
+     */
+    var wrap = document.getElementById('wrap');
+    wrap.addEventListener('click', function () {
+      console.log("bubbling: #wrap");
+    });
+
+    /**
+     * #wrapのcaptureフェーズでstopPropagation
+     */
+    wrap.addEventListener('click', function (e) {
+      e.stopPropagation();
+      console.log("capture: #wrap 1");
+    }, true);
+    wrap.addEventListener('click', function () {
+      console.log("capture: #wrap 2");
+    }, true);
+
+    /**
+     * #button
+     */
+    var button = document.getElementById('button');
+    button.onclick = function () {
+      console.log('target(js): #button');
+    };
+    button.addEventListener('click', function () {
+      console.log("bubbling: #button");
+    });
+    button.addEventListener('click', function () {
+      console.log("capture: #button");
+    }, true);
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>shouldComponentUpdate</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    /**
+     * WithoutShoudComponentUpdate
+     *
+     * - shouldComponentUpdateを使っていないコンポーネント
+     */
+    class WithoutShoudComponentUpdate extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = { value: 'hoge' };
+        this.update = this.update.bind(this);
+      }
+
+      update() {
+        /**
+         * 毎回同じデータでsetStateする
+         */
+        this.setState({ value: 'hoge' });
+      }
+
+      render() {
+        /**
+         * renderが呼ばれているか確かめるためのconsole.log
+         */
+        console.log('WithoutShoudComponentUpdate\'s render was called.');
+
+        return (
+          <div>
+            <h1>shouldComponentUpdate無し</h1>
+            <p>this.state.value: {this.state.value}</p>
+            <button onClick={this.update}>更新</button>
+          </div>
+        );
+      }
+    }
+
+    /**
+     * WithShoudComponentUpdate
+     *
+     * - shouldComponentUpdateを使っているコンポーネント
+     */
+    class WithShoudComponentUpdate extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = { value: 'hoge' };
+        this.update = this.update.bind(this);
+      }
+
+      update() {
+        /**
+         * 毎回同じデータでsetStateする
+         */
+        this.setState({ value: 'hoge' });
+      }
+
+      /**
+       * shouldComponentUpdate
+       *
+       * - このメソッドがfalseを返す場合、renderは呼ばれない
+       * - props, stateが更新され、renderが呼ばれる前に実行される
+       * - 引数のnextProps, nextStateは更新後のprops, state
+       * - this.state, this.propsは更新前
+       */
+      shouldComponentUpdate(nextProps, nextState) {
+        /**
+         * 値が変わっていない場合は、renderを呼ばせない
+         */
+        return this.state.value !== nextState.value;
+      }
+
+      render() {
+        console.log('WithShoudComponentUpdate\'s render was called.');
+
+        return (
+          <div>
+            <h1>shouldComponentUpdateあり</h1>
+            <p>this.state.value: {this.state.value}</p>
+            <button onClick={this.update}>更新</button>
+          </div>
+        );
+      }
+    }
+
+
+    ReactDOM.render(
+      <div>
+        <WithoutShoudComponentUpdate />
+        <WithShoudComponentUpdate />
+      </div>,
+      document.getElementById('app')
+    );
+  </script>
+</body>
+</html>

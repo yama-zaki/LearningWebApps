@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>componentDidMount, componentWillUnmount</title>
+</head>
+<body>
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    /**
+     * WindowSizeAppコンポーネント
+     *
+     * - windowのresizeイベントを監視し画面のサイズを表示する
+     */
+    class WindowSizeApp extends React.Component {
+      constructor(props) {
+        super(props);
+
+        /**
+         * stateの初期化
+         *
+         * - window.innerWidth, window.innerHeightはここでは参照しない
+         *   - constructorはサーバサイドで呼ばれる
+         */
+        this.state = {
+          innerWidth: 0,
+          innerHeight: 0,
+        };
+
+        this.updateWindowSize = this.updateWindowSize.bind(this);
+      }
+
+      /**
+       * componentDidMount
+       *
+       * - コンポーネントがDOMに追加された後に呼ばれる
+       * - DOMに関する操作はここで行う
+       *   - window.addEventListener
+       *   - window.innerWidth, window.innerHeightの参照
+       */
+      componentDidMount() {
+        window.addEventListener('resize', this.updateWindowSize);
+
+        this.updateWindowSize();
+      }
+
+      /**
+       * componentWillUnmount
+       *
+       * - コンポーネントがDOMから削除される時に呼ばれる
+       * - イベントの解除などの後片付けをする
+       */
+      componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowSize);
+      }
+
+      /**
+       * updateWindowSize
+       *
+       * - window.innerWidth, window.innerHeightを取得しstateを更新
+       */
+      updateWindowSize() {
+        this.setState({
+          innerWidth: window.innerWidth,
+          innerHeight: window.innerHeight,
+        });
+      }
+
+      render() {
+        return (
+          <ul>
+            <li>window.innerWidth: {this.state.innerWidth}</li>
+            <li>window.innerHeight: {this.state.innerHeight}</li>
+          </ul>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <WindowSizeApp />,
+      document.getElementById('app')
+    );
+  </script>
+</body>
+</html>

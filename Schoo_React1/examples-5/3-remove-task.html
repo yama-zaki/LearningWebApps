@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDoアプリ</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    /**
+     * TaskFormコンポーネント
+     */
+    class TaskForm extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = {
+          input: '',
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+
+      handleChange(e) {
+        this.setState({ input: e.target.value });
+      }
+
+      handleSubmit(e) {
+        // preventDefaultしないとリロードしてしまう
+        e.preventDefault();
+
+        if (this.state.input) {
+          /**
+           * onAddでタスクの追加を通知後、フォームをリセット
+           */
+          this.props.onAdd(this.state.input);
+          this.setState({ input: '' });
+        }
+      }
+
+      render() {
+        return <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.input}
+            onChange={this.handleChange}
+          />
+        </form>
+      }
+    }
+    TaskForm.propTypes = {
+      onAdd: React.PropTypes.func.isRequired,
+    };
+
+    /**
+     * TaskListコンポーネント
+     */
+    function TaskList(props) {
+      var lists = props.tasks.map(function (task, index) {
+        return <li key={'task-' + index}>{task}</li>;
+      });
+      return <ul>{lists}</ul>;
+    }
+    TaskList.propTypes = {
+      tasks: React.PropTypes.array.isRequired,
+    };
+
+    /**
+     * RemoveButtonコンポーネント
+     */
+    function RemoveButton(props) {
+      return <a
+        href="javascript:void(0);"
+        style={{
+          color: 'red',
+          visibility: props.show ? 'visible' : 'hidden'
+        }}
+        onClick={props.onClick}
+      >削除</a>;
+    }
+    RemoveButton.propTypes = {
+      show: React.PropTypes.bool.isRequired,
+      onClick: React.PropTypes.func.isRequired,
+    };
+
+    /**
+     * Taskコンポーネント
+     *
+     */
+    class Task extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          showRemove: false,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleClickRemove = this.handleClickRemove.bind(this);
+      }
+
+      handleChange(e) {
+        this.props.onToggleCompleted({
+          id: this.props.id,
+          completed: e.target.checked,
+        });
+      }
+
+      /**
+       * 削除リンクの出し分け
+       */
+      handleMouseOver() {
+        this.setState({ showRemove: true });
+      }
+      handleMouseOut() {
+        this.setState({ showRemove: false });
+      }
+
+      // 削除リンクが押された時
+      handleClickRemove(e) {
+        this.props.onRemove({ id: this.props.id });
+      }
+
+      render() {
+        var completed = this.props.completed;
+        var text = completed
+          ? <s>{this.props.text}</s>
+          : this.props.text;
+
+        return <div
+          onMouseOver={this.handleMouseOver}
+          onMouseOut={this.handleMouseOut}
+        >
+          <input
+            type="checkbox"
+            checked={completed}
+            onChange={this.handleChange}
+          /> {text} <RemoveButton
+            show={this.state.showRemove}
+            onClick={this.handleClickRemove}
+          />
+        </div>;
+      }
+    }
+    Task.propTypes = {
+      id: React.PropTypes.number.isRequired,
+      text: React.PropTypes.string.isRequired,
+      completed: React.PropTypes.bool.isRequired,
+      onToggleCompleted: React.PropTypes.func.isRequired,
+      onRemove: React.PropTypes.func.isRequired,
+    };
+
+    /**
+     * TodoAppコンポーネント
+     */
+    class TodoApp extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = {
+          tasks: []
+        };
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleToggleCompleted = this.handleToggleCompleted.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+      }
+
+      handleAdd(text) {
+        /**
+         * 完了を管理するため、Stringからオブジェクトに変更
+         */
+        this.setState({
+          tasks: this.state.tasks.concat({
+            text: text,
+            completed: false,
+          })
+        });
+      }
+
+      handleToggleCompleted(e) {
+        var newTasks = this.state.tasks.map(function (task, index) {
+          if (e.id === index) {
+            task.completed = e.completed;
+          }
+          return task;
+        });
+
+        this.setState({ tasks: newTasks });
+      }
+
+      handleRemove(e) {
+        var newTasks = this.state.tasks.filter(function (task, index) {
+          return e.id !== index;
+        });
+
+        this.setState({ tasks: newTasks });
+      }
+
+      render() {
+        var tasks = this.state.tasks.map(function (task, index) {
+          return (
+            <Task
+              id={index}
+              onToggleCompleted={this.handleToggleCompleted}
+              onRemove={this.handleRemove}
+              {...task}
+            />
+          );
+        }, this);
+
+        return <div>
+          <h1>Todoアプリ</h1>
+          <TaskForm onAdd={this.handleAdd} />
+          <TaskList tasks={tasks} />
+        </div>;
+      }
+    }
+
+    /**
+     * ReactDOM.render
+     *
+     * - ReactのエレメントをDOMに出力する関数
+     */
+    ReactDOM.render(
+      <TodoApp />,
+      document.getElementById('app') // 出力先DOMエレメント
+    );
+  </script>
+
+</body>
+</html>

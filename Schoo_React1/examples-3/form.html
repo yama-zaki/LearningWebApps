@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello, World その1</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    function handleChange(e) {
+      console.log(e.target.value);
+    }
+
+    function handleInput(e) {
+      console.log(e.target.value);
+    }
+
+    /**
+     * ReactDOM.render
+     *
+     * - ReactのエレメントをDOMに出力する関数
+     */
+    ReactDOM.render(
+      <form onInput={handleInput} onChange={handleChange}>
+        <select defaultValue="duga">
+          <option value="hoge">hoge</option>
+          <option value="fuga">fuga</option>
+          <option value="duga">duga</option>
+        </select>
+        <p>
+          <input type="checkbox" defaultChecked={true} />
+        </p>
+        <textarea />
+      </form>,
+      document.getElementById('app') // 出力先DOMエレメント
+    );
+  </script>
+
+</body>
+</html>

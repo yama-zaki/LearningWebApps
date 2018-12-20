@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello, World その1</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    react-router
+  -->
+  <script src="https://unpkg.com/react-router/umd/ReactRouter.min.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    var Router = ReactRouter.Router;
+    var Route = ReactRouter.Route;
+    var Link = ReactRouter.Link;
+
+    var hashHistory = ReactRouter.hashHistory;
+
+    class App extends React.Component {
+      render() {
+        /**
+         * <Route>を入れ子にしているので、
+         * 内側の<Route>に設定されているコンポーネントが
+         * this.props.childrenに入ってくる
+         */
+        return <div>
+          <h1>React Router</h1>
+          <h2>Menu</h2>
+          <ul>
+            <li><Link to="/hello">Hello</Link></li>
+            <li><Link to="/page/1">Page 1</Link></li>
+            <li><Link to="/page/2">Page 2</Link></li>
+            <li><Link to="/page/3">Page 3</Link></li>
+          </ul>
+          <div>
+            {this.props.children}
+          </div>
+        </div>;
+      }
+    }
+
+    class Page extends React.Component {
+      render() {
+        /**
+         * this.props.params
+         * URLに含まれるパラメタを取得
+         */
+        return <h2>PageNo: {this.props.params.no}</h2>;
+      }
+    }
+
+    class Hello extends React.Component {
+      render() {
+        return <h2>Hello! React Router</h2>;
+      }
+    }
+
+    // NotFoundコンポーネント
+    // URLにマッチするコンテンツがない場合に表示
+    class NotFound extends React.Component {
+      render() {
+        return <h2>Not Found</h2>;
+      }
+    }
+
+    /**
+     * ReactDOM.render
+     *
+     * - ReactのエレメントをDOMに出力する関数
+     */
+    ReactDOM.render(
+      /**
+       * /         ... Appコンポーネント
+       * /page/:no ... Pageコンポーネント
+       * /hello    ... Helloコンポーネント
+       * それ以外  ... NotFoundコンポーネント
+       *
+       * ReactRouter.hashHistory
+       * URLのハッシュ値（#hogehoge）を使ったURL書き換え
+       */
+      <Router history={ReactRouter.hashHistory}>
+        <Route path="/" component={App}>
+          <Route path="page/:no" component={Page} />
+          <Route path="hello" component={Hello} />
+        </Route>
+        <Route path="*" component={NotFound} />
+      </Router>,
+      document.getElementById('app') // 出力先DOMエレメント
+    );
+  </script>
+
+</body>
+</html>

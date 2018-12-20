@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>refs</title>
+</head>
+<body>
+
+  <h1>refs: canvasの例</h1>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+
+    /**
+     * <canvas>でHelloWorldを出力するサンプル
+     */
+    class CanvasApp extends React.Component {
+      componentDidMount() {
+        /**
+         * HTMLCanvasElementが取得できる
+         */
+        var canvas = this.refs.canvas;
+
+        // contextを取得し、文字を書く
+        var context = canvas.getContext('2d');
+        context.font = "30px Arial";
+        context.fillText("Hello World", 10, 50);
+      }
+
+      render() {
+        /**
+         * refで参照名を付ける
+         */
+        return <canvas ref="canvas" />
+      }
+    }
+
+    /**
+     * ReactDOM.render
+     *
+     * - ReactのエレメントをDOMに出力する関数
+     */
+    ReactDOM.render(
+      <CanvasApp />,
+      document.getElementById('app') // 出力先DOMエレメント
+    );
+  </script>
+
+</body>
+</html>

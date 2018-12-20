@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>event.preventDefault()</title>
+</head>
+<body>
+  <h1>event.preventDefault()</h1>
+
+  <h2>event.preventDefault()無し</h2>
+
+  <p><a href="https://schoo.jp/">スクーへのリンク</a></p>
+
+  <h2>event.preventDefault()有り</h2>
+
+  <p><a id="link" href="https://schoo.jp/">スクーへのリンク</a></p>
+
+  <script>
+    var link = document.getElementById('link');
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>

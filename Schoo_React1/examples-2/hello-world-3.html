@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello, World その3</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+
+    /**
+     * HelloMessageコンポーネント
+     * - その２のものを再利用！
+     */
+    function HelloMessage(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+
+    /**
+     * HelloMessageListコンポーネント
+     * - その２のものを再利用！
+     */
+    function HelloMessageList(props) {
+      var list = props.names.map(function (name) {
+        return <HelloMessage name={name} />;
+      });
+
+      return <div>{list}</div>;
+    }
+
+    /**
+     * HelloWorldAppコンポーネント
+     *
+     * - HelloMessage, HelloMessageListを組み合わせたコンポーネント
+     * - ES2015 class記法を使って、React.Componentを継承
+     *
+     * !!! 詳しくは第２回で！ !!!
+     */
+    class HelloWorldApp extends React.Component {
+      constructor(props) {
+        super(props);
+
+        /**
+         * this.state
+         *
+         * - コンポーネント内に状態を持つことが出来ます
+         * - 状態が更新されるとrenderメソッドが再度呼ばれる
+         * - constructor内で初期値を設定します
+         */
+        this.state = {
+          name: '',
+          names: [],
+        };
+
+        /**
+         * イベントハンドラ
+         *
+         * - .bind(this)して置かないと正しく動かないケースが有る
+         * - ReactというよりはJavaScriptの作法です。
+         */
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+
+      /**
+       * handleChange
+       *
+       * - <input>が更新された時に呼ばれる
+       * - eventはブラウザのEventオブジェクトをReactがWrapしたもの
+       *   - ブラウザ毎の差異を吸収してくれる
+       * - eventのインタフェースはブラウザのEventオブジェクトとほぼ同じ
+       */
+      handleChange(event) {
+        /**
+         * - this.stateを入力された文字列で更新
+         * - 更新後、renderが再度実行される
+         */
+        this.setState({ name: event.target.value });
+      }
+
+      /**
+       * handleSubmit
+       *
+       * - <input>内でEnterを押した時に呼ばれる
+       * - eventはブラウザのEventオブジェクトをReactがWrapしたもの
+       *   - ブラウザ毎の差異を吸収してくれる
+       * - eventのインタフェースはブラウザのEventオブジェクトとほぼ同じ
+       */
+      handleSubmit(event) {
+        // デフォルトの挙動をキャンセル
+        event.preventDefault();
+
+        /**
+         * - this.state.nameは空文字で初期化
+         * - this.state.namesに名前を追加
+         * - 更新後、renderが再度実行される
+         */
+        this.setState({
+          name: '',
+          names: this.state.names.concat([this.state.name]),
+        });
+      }
+
+      /**
+       * render
+       *
+       * - 描画したいエレメントを返す
+       * - state, propsが更新されると再度実行される
+       */
+      render() {
+        return (
+          <div>
+            <HelloMessage name={this.state.name} />
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                placeholder="Your name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </form>
+            <HelloMessageList names={this.state.names} />
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <HelloWorldApp />,
+      document.getElementById('app')
+    );
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>React-Bootstrap</title>
+
+  <!--
+    React-BootstrapのCSS
+  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+</head>
+<body>
+
+  <div id="app">
+    <!-- ここにReact.jsで生成したUIが描画される -->
+  </div>
+
+  <!--
+    React.js
+
+    - react.js => React.jsの本体
+    - react-dom.js => React.jsをDOMで動かすためのJS
+    - 非圧縮の開発用ビルドで、エラー時のメッセージが丁寧
+    - 圧縮版を使いたい場合は拡張子を"min.js"にする
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+
+  <!--
+    React-BootstrapのJavaScript
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.3/react-bootstrap.min.js"></script>
+
+  <!--
+    babel-standalone
+
+    - ブラウザでJSXをJavaScriptに変換するために必要
+    - <script type="text/babel">内にあるコードをJavaScriptにBabelで変換後、実行
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+
+  <!--
+    サンプルコード
+
+    - JSXで記述されています
+    - babel-standaloneでJavaScriptに変換後、実行されます
+    - 別ファイルに分けることも出来ます
+      - クロスオリジン制約に引っかからない場合のみ
+      - ex) <script type="text/babel" src="hoge.js">
+  -->
+  <script type="text/babel">
+    const {
+      ButtonToolbar, Button, Modal
+    } = ReactBootstrap;
+
+    class ModalExample extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { showModal: false };
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+      }
+
+      open() {
+        this.setState({ showModal: true });
+      }
+
+      close() {
+        this.setState({ showModal: false });
+      }
+
+      render() {
+        return <div>
+          <Button
+            bsStyle="primary"
+            bsSize="large"
+            onClick={this.open}
+          >モーダルを開く</Button>
+
+          {/**
+            * show属性でモーダルの表示・非表示を切り替え
+            */}
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>ヘッダー</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Hello! モーダル</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>;
+      }
+    }
+
+    /**
+     * ReactDOM.render
+     *
+     * - ReactのエレメントをDOMに出力する関数
+     */
+    ReactDOM.render(
+      <div>
+        <h1>React-Bootstrap</h1>
+
+        <h2>ボタン</h2>
+        <ButtonToolbar>
+          <Button>Default</Button>
+          <Button bsStyle="primary">Primary</Button>
+          <Button bsStyle="success">Success</Button>
+          <Button bsStyle="info">Info</Button>
+          <Button bsStyle="warning">Warning</Button>
+          <Button bsStyle="danger">Danger</Button>
+          <Button bsStyle="link">Link</Button>
+        </ButtonToolbar>
+
+        <h2>モーダル</h2>
+        <ModalExample />
+      </div>,
+      document.getElementById('app') // 出力先DOMエレメント
+    );
+  </script>
+
+</body>
+</html>
