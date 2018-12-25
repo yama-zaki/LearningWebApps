@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./foo/src/js/index.js --output ./foo/main.js",
-    "build": "webpack --mode production ./foo/src/js/index.js --output ./foo/main.js"
-  },
-  "scripts": {
     "dev": "webpack --mode development --module-bind js=babel-loader",
     "build": "webpack --mode production --module-bind js=babel-loader"
   },
@@ -17,6 +13,8 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "babel-loader": "^8.0.4",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
   },
