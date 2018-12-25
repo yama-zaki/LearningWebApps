@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./src/index.js --output ./dist/test/main.js",
+    "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production ./src/index.js --output ./dist/main.js"
   },
   "keywords": [],
