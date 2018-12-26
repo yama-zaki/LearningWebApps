@@ -4,3 +4,8 @@
 body {
     line-height: 2;
 }
+#app {
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+}
