@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --module-bind js=babel-loader",
-    "build": "webpack --mode production --module-bind js=babel-loader"
+    "dev": "webpack --mode development ./src/index.js --output ./dist/test/main.js",
+    "build": "webpack --mode production ./src/index.js --output ./dist/main.js"
   },
   "keywords": [],
   "author": "",
