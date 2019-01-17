@@ -12,3 +12,6 @@
 finish/
 sample_js/template/
 node_modules/
+Schoo_bootstrap/bootstrap-4.2.1-dist/css/*
+Schoo_bootstrap/bootstrap-4.2.1-dist/js/*
+
