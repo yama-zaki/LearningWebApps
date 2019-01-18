@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./src/index.js --output ./dist/test/main.js",
+    "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production ./src/index.js --output ./dist/main.js"
   },
   "keywords": [],
@@ -21,7 +21,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {},
   "description": ""
