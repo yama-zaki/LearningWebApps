@@ -1,1 +1,2 @@
-console.log(`I'm a silly entry point`);
+import App from "./App";
+import style from "./main.css";
