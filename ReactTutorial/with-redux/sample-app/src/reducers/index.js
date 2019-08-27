@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
+import { firebaseReducer } from 'react-redux-firebase'
+import auth from './auth'
+import notice from './notice'
+import todoStatuses from './todoStatuses'
 import visibilityFilter from './visibilityFilter'
 
 export default combineReducers({
-  todos,
+  firebase: firebaseReducer,
+  auth,
+  notice,
+  todoStatuses,
   visibilityFilter
 })
