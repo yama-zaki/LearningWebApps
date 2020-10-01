@@ -4,12 +4,12 @@
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [{
-    "matches": ["https://github.com/waterada/chrome-ex-template/*"],
+    "matches": ["https://github.com/tecowl/AutoAnswer/compare/*"],
     "js": ["jquery-2.2.0.min.js", "ChEx.js", "content_script.js"]
   }],
   "options_page": "options.html",
   "permissions": [
-    "https://github.com/waterada/chrome-ex-template/*",
+    "https://github.com/tecowl/AutoAnswer/compare/",
     "storage"
   ]
 }
