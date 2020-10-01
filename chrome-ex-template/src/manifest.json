@@ -5,12 +5,15 @@
   "manifest_version": 2,
   "content_scripts": [{
     "matches": ["https://github.com/tecowl/AutoAnswer/compare/*"],
-    "js": ["jquery-2.2.0.min.js", "ChEx.js", "content_script.js"]
+    "js": ["jquery-2.2.0.min.js", "ChEx.js", "content_script.js"],
+    "persistent": false
   }],
   "options_page": "options.html",
   "permissions": [
-    "https://github.com/tecowl/AutoAnswer/compare/",
-    "storage"
+    "https://github.com/tecowl/AutoAnswer/compare/*",
+    "storage",
+    "activeTab",
+    "declarativeContent"
   ],
   "icons": {
     "48": "images/page_white_csharp.png"
