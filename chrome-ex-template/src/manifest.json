@@ -1,6 +1,6 @@
 {
-  "name": "オートアンサーPRテンプレート選択",
-  "description": "PR作成時に指定したテンプレートを読み込みます",
+  "name": "オートアンサーPRテンプレート挿入",
+  "description": "PR作成時にbranch名に対応したテンプレートを読み込みます",
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [{
@@ -8,7 +8,6 @@
     "js": ["jquery-2.2.0.min.js", "ChEx.js", "content_script.js"],
     "persistent": false
   }],
-  "options_page": "options.html",
   "permissions": [
     "https://github.com/tecowl/AutoAnswer/compare/*",
     "storage",
