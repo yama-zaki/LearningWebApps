@@ -1,6 +1,6 @@
 {
-  "name": "Chrome拡張の雛形です",
-  "description": "これから作るものにあわせて変更してください。",
+  "name": "オートアンサーPRテンプレート選択",
+  "description": "PR作成時に指定したテンプレートを読み込みます",
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [{
