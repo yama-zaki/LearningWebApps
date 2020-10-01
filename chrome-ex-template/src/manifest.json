@@ -11,5 +11,8 @@
   "permissions": [
     "https://github.com/tecowl/AutoAnswer/compare/",
     "storage"
-  ]
+  ],
+  "icons": {
+    "48": "images/page_white_csharp.png"
+  }
 }
