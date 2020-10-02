@@ -1,13 +1,27 @@
 {
-  "name": "【導入】chrome.* API",
+  "name": "オートアンサーPRテンプレート挿入",
+  "description": "PR作成時に選択したテンプレートを読み込みます",
+  "version": "0.1",
   "manifest_version": 2,
-  "version": "1.0",
   "browser_action": {
-    "default_title": "【導入】chrome.* API",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "images/page_white_csharp.png"
+    }
   },
-
-  "background": {
-    "scripts": ["background.js"]
+  "permissions": [
+    "https://github.com/tecowl/AutoAnswer/compare/*",
+    "storage",
+    "activeTab",
+    "declarativeContent",
+    "tabs"
+  ],
+  "content_scripts": [{
+    "matches": ["https://github.com/tecowl/AutoAnswer/compare/*"],
+    "js": ["jquery-2.2.0.min.js", "content_script.js"],
+    "persistent": true
+  }],
+  "icons": {
+    "48": "images/page_white_csharp.png"
   }
 }
