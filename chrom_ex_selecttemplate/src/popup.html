@@ -3,19 +3,16 @@
     <head>
       <meta charset="utf-8">
       <script src="jquery-2.2.0.min.js"></script>
-      <style>
-        button {
-          height: 30px;
-          width: 200px;
-          outline: none;
-        }
-      </style>
+      <link rel="stylesheet" href="popup.css">
     </head>
     <body>
-      <button id="changefile_fix">修正PRテンプレート</button>
-      <button id="changefile_features">要望PRテンプレート</button>
-      <button id="changefile_print">印刷物PRテンプレート</button>
-      <button id="changefile_spec">仕様書PRテンプレート</button>
+      <div class=title>PullRequest Template</div>
+      <button class=btn_select id="changefile_fix">修正PRテンプレート</button>
+      <button class=btn_select id="changefile_features">要望PRテンプレート</button>
+      <button class=btn_select id="changefile_print">印刷物PRテンプレート</button>
+      <button class=btn_select id="changefile_spec">仕様書PRテンプレート</button>
+      <div class=msg id="msg1">Click the template to change the URL</div>
+      <div class=msg id="msg2">Then click the [Create pull request]</div>
       <script src="popup.js"></script>
     </body>
 </html>
