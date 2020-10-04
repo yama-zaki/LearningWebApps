@@ -9,21 +9,21 @@
 }
 .msg {
   color: #191970;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: bold;
   font-family: Comic Sans MS;
-  text-align: center;
   line-height: 13px;
+  margin-Left: 3px; 
 }
 #msg1{
   margin-Top: 5px;
 }
-#msg2{
+#msg3{
   margin-bottom: 5px; 
 }
 .btn_select {
   height: 30px;
-  width: 200px;
+  width: 210px;
   color: #fff;
   background-image: -moz-linear-gradient(
     top,
