@@ -1,13 +1,17 @@
 ﻿//----------------------
 chrome.runtime.onMessage.addListener(function(msg) {
   console.log(msg)
+  let url = location.href;
+  // URLに`compare`が含まれない時は何もしない
+  let result = url.match('compare');
+  if(!result) {
+    exit;
+  };
   let urlParam = location.search.substring(1);
-  let url;
   // URLにパラメータが存在し、同じ場合は何もしない
   if(urlParam) {
     let result = urlParam.match(msg.typename);
-    if(result) {} else {
-      url = location.href;
+    if(!result) {
       url = url.replace(urlParam, '');
       if(msg.typename=='fix') {        
         location.replace(url + "template=fix.md");
