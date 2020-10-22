@@ -10,7 +10,7 @@
     }
   },
   "permissions": [
-    "https://github.com/tecowl/AutoAnswer/compare/*",
+    "https://github.com/tecowl/AutoAnswer/*",
     "storage",
     "activeTab",
     "declarativeContent",
