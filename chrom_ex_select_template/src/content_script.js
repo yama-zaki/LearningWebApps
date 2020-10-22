@@ -2,8 +2,8 @@
 chrome.runtime.onMessage.addListener(function(msg) {
   console.log(msg)
   let url = location.href;
-  // URLに`compare`が含まれない時は何もしない
-  let result = url.match('compare');
+  // URLに`compare/[branch]...[branch]`が含まれない時は何もしない
+  let result = url.match('compare/');
   if(!result) {
     exit;
   };
