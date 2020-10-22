@@ -18,8 +18,16 @@
 #msg1{
   margin-Top: 5px;
 }
-#msg3{
+#msg6{
   margin-bottom: 5px; 
+}
+#msg7{
+  font-size: 7px;
+  float:left;
+}
+#msg8{
+  font-size: 7px;
+  margin-left: 15px; 
 }
 .btn_select {
   height: 30px;
