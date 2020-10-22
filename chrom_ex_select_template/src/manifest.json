@@ -1,5 +1,5 @@
 {
-  "name": "オートアンサーPRテンプレート挿入",
+  "name": "AA_PRテンプレ挿入",
   "description": "PR作成時に選択したテンプレートを読み込みます",
   "version": "0.1",
   "manifest_version": 2,
