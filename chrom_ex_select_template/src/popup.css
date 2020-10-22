@@ -1,0 +1,71 @@
+.title {
+  color: #191970;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  text-align: center;
+  line-height: 30px;
+  margin-bottom: 2px; 
+}
+.msg {
+  color: #191970;
+  font-size: 8px;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  line-height: 13px;
+  margin-Left: 3px; 
+}
+#msg1{
+  margin-Top: 5px;
+}
+#msg6{
+  margin-bottom: 5px; 
+}
+#msg7{
+  font-size: 7px;
+  float:left;
+}
+#msg8{
+  font-size: 7px;
+  margin-left: 15px; 
+}
+.btn_select {
+  height: 30px;
+  width: 210px;
+  color: #fff;
+  background-image: -moz-linear-gradient(
+    top,
+    #7abcff 0%,
+    #60abf8 44%,
+    #4096ee);
+  background-image: -webkit-gradient(
+    linear,left top,left bottom,
+    from(#7abcff),
+    color-stop(0.49,#60abf8),
+    to(#4096ee));
+  border-radius: 10px;
+  border-style: outset;
+  border-color: #4096ee;
+  font-weight: bold;
+  font-family: Hiragino Maru Gothic ProN;
+  margin-bottom: 3px;
+  outline: none
+}
+.btn_select:hover {  
+  background-image: -moz-linear-gradient(
+    top,
+    #4169e1);
+  background-image: -webkit-gradient(
+    linear,left top,left bottom,
+    from(#4169e1),
+    to(#4169e1));
+}
+.btn_select:active {
+  background-image: -moz-linear-gradient(
+    top,
+    #1e90ff);
+  background-image: -webkit-gradient(
+    linear,left top,left bottom,
+    from(#1e90ff),
+    to(#1e90ff));
+}
