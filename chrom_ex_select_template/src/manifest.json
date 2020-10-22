@@ -17,7 +17,7 @@
     "tabs"
   ],
   "content_scripts": [{
-    "matches": ["https://github.com/tecowl/AutoAnswer/compare/*"],
+    "matches": ["https://github.com/tecowl/AutoAnswer/*"],
     "js": ["jquery-2.2.0.min.js", "content_script.js"],
     "persistent": true
   }],
